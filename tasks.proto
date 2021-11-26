@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message Empty {}
+
+message TaskId {
+    int32 id = 1;
+}
+
+message Task {
+    int32 id = 1;
+    required string title = 2;
+    required string description = 3;
+}
+
+message TaskList {
+    repeated Task tasks = 1;
+}
+
+service TaskService {
+    rpc ListAll (Empty) returns (TaskList) {}
+    rpc Insert (Task) returns (Task) {}
+    rpc FindOne (TaskId) returns (Task) {}
+}
